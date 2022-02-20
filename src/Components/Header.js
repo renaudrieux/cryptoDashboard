@@ -1,9 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [search, setSearch] = useState("");
+
   return (
-    <div>
+    <div className="header">
       <header className="p-3 bg-dark text-white">
         <div className="container">
           <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -32,24 +35,6 @@ const Header = () => {
                 </a>
               </li>
             </ul>
-
-            <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-              <input
-                type="search"
-                className="form-control form-control-dark"
-                placeholder="Search..."
-                aria-label="Search"
-              />
-            </form>
-
-            <div className="text-end">
-              <button type="button" className="btn btn-outline-light me-2">
-                Login
-              </button>
-              <button type="button" className="btn btn-warning">
-                Sign-up
-              </button>
-            </div>
           </div>
         </div>
       </header>

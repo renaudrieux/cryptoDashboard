@@ -1,31 +1,32 @@
-import Cards from "../Components.js/Cards";
-import Header from "../Components.js/Navigation";
+import React from "react";
+import Header from "../Components/Header";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import TableCoins from "../Components/TableCoins";
 
 const Home = () => {
-  const [cryptoData, setCryptoData] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [coins, setCoins] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
       .get(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`
       )
-      .then((res) =>
-        setCryptoData(
-          res.data.map((crypto) => <Cards key={crypto.id} crypto={crypto} />)
-        )
-      );
-  }, [search]);
+      .then((res) => setCoins(res.data));
+  }, []);
 
   return (
-    <div>
+    <div className="container">
       <Header />
-
-      <div className="home-component">
-        <div className="home-container">{cryptoData}</div>
-      </div>
+      <input
+        type="text"
+        placeholder="Search for a coin"
+        className="form-control bg-dark text-light border-0 mt-4 text-center"
+        autoFocus
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <TableCoins coins={coins} search = {search} />
     </div>
   );
 };

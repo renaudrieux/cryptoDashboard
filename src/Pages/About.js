@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../Components.js/Navigation";
+import Header from "../Components/Header";
 
 const About = () => {
   return (
-    <div>
+    <div className="container">
       <Header />
-      <p>About</p>
+      <p>Ici c'es about</p>
     </div>
   );
 };
